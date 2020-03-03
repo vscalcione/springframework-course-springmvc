@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,11 +18,51 @@ public class ProductServiceImpl implements ProductService{
         loadProducts();
     }
 
+    /**
+     * Metodo che ritorna una lista contenente tutti i prodotti
+     * @return
+     */
     @Override
     public ArrayList listAllProducts() {
         return new ArrayList<>(products.values());
     }
 
+    /**
+     * Metodo che ritorna l'id di ogni singolo prodotto
+     * @param id
+     * @return
+     */
+    @Override
+    public Product getProductById(Integer id) {
+        return products.get(id);
+    }
+
+    /**
+     * Metodo che permette di salvare o aggiornare ogni singolo prodotto
+     * @param product
+     * @return
+     */
+    @Override
+    public Product saveOrUpdateProduct(Product product) {
+        if(product != null){
+            if(product.getId() == null){
+                product.setId(getNextKey());
+            }
+            products.put(product.getId(), product);
+            return product;
+        }else{
+            throw new RuntimeException("Product can't be null!!!");
+        }
+    }
+
+    private Integer getNextKey(){
+        return Collections.max(products.keySet()) + 1;
+    }
+
+
+    /**
+     * Metodo che permette di caricare tutti i prodotti
+     */
     private void loadProducts() {
         products = new HashMap<>();
 
@@ -56,10 +97,5 @@ public class ProductServiceImpl implements ProductService{
         fourthProduct.setPrice(new BigDecimal("15.99"));
         fourthProduct.setImageUrl("http://example.com/product4");
         products.put(4, fourthProduct);
-    }
-
-    @Override
-    public Product getProductById(Integer id) {
-        return products.get(id);
     }
 }
