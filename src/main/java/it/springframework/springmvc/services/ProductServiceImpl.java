@@ -57,4 +57,9 @@ public class ProductServiceImpl implements ProductService{
         fourthProduct.setImageUrl("http://example.com/product4");
         products.put(4, fourthProduct);
     }
+
+    @Override
+    public Product getProductById(Integer id) {
+        return products.get(id);
+    }
 }
