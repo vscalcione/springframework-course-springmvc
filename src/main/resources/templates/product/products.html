@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Spring Core Online Tutorial</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+        <!-- link css files -->
+        <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
+        <link href="../../static/css/spring-core.css" th:href="@{../../static/css/spring-core.css}" rel="stylesheet" media="screen"/>
+
+        <!-- link script js files -->
+        <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js" th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>3
+        <script src="https://kit.fontawesome.com/a83b48a941.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div th:if="${not #lists.isEmpty(products)}">
+                <h2>Products list</h2>
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr class="bg-primary">
+                        <th>Id</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Image url</th>
+                        <th>List</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.id}" />
+                            <td th:text="${product.description}" />
+                            <td th:text="${product.price}" />
+                            <td th:text="${product.imageUrl}" />
+                            <td>
+                                <a th:href="${'/product/' + product.id}"><i class="fas fa-list-alt fa-2x"></i></a>
+                            </td>
+                            <td>
+                                <a th:href="${'/product/edit/' + product.id}"><i class="fas fa-edit fa-2x"></i></a>
+                            </td>
+                            <td>
+                                <a th:href="${'/product/delete/' + product.id}"><i class="fas fa-trash-alt fa-2x"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <a href="/product/new">New Product</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

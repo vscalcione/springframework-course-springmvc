@@ -1,7 +1,7 @@
 package it.springframework.springmvc.controllers;
 
 import it.springframework.springmvc.domain.Product;
-import it.springframework.springmvc.services.ProductService;
+import it.springframework.springmvc.services.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +27,7 @@ public class ProductController {
     @RequestMapping("/products")
     public String listProducts(Model model){
         model.addAttribute("products", productService.listAllProducts());
-        return "products";
+        return "/product/products";
     }
 
     /**
@@ -39,25 +39,31 @@ public class ProductController {
     @RequestMapping("/product/{id}")
     public String getProduct(@PathVariable Integer id, Model model){
         model.addAttribute("product", productService.getProductById(id));
-        return "product";
+        return "/product/product";
     }
 
     @RequestMapping("/product/new")
     public String newProduct(Model model){
         model.addAttribute("product", new Product());
-        return "productForm";
+        return "/product/productForm";
     }
 
     @RequestMapping(value = "/product", method = RequestMethod.POST)
     public String saveOrUpdateProduct(Product product){
         Product savedProduct = productService.saveOrUpdateProduct(product);
-        return "redirect:/product/" + savedProduct.getId();
+        return "redirect:/product/product/" + savedProduct.getId();
     }
 
     @RequestMapping("product/edit/{id}")
     public String editProduct(@PathVariable Integer id, Model model){
         model.addAttribute("product", productService.getProductById(id));
-        return "productForm";
+        return "/product/productForm";
+    }
+
+    @RequestMapping("/product/delete/{id}")
+    public String deleteProduct(@PathVariable Integer id){
+        productService.deleteProduct(id);
+        return "redirect:/product/products";
     }
 
 }

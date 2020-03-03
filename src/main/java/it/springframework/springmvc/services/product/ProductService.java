@@ -1,4 +1,4 @@
-package it.springframework.springmvc.services;
+package it.springframework.springmvc.services.product;
 
 import it.springframework.springmvc.domain.Product;
 
@@ -9,4 +9,5 @@ public interface ProductService {
     List<Product> listAllProducts();
     Product getProductById(Integer id);
     Product saveOrUpdateProduct(Product product);
+    void deleteProduct(Integer id);
 }

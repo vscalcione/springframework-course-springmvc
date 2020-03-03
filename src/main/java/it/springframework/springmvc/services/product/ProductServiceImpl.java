@@ -1,4 +1,4 @@
-package it.springframework.springmvc.services;
+package it.springframework.springmvc.services.product;
 
 import it.springframework.springmvc.domain.Product;
 import org.springframework.stereotype.Service;
@@ -55,10 +55,14 @@ public class ProductServiceImpl implements ProductService{
         }
     }
 
+    @Override
+    public void deleteProduct(Integer id) {
+        products.remove(id);
+    }
+
     private Integer getNextKey(){
         return Collections.max(products.keySet()) + 1;
     }
-
 
     /**
      * Metodo che permette di caricare tutti i prodotti
