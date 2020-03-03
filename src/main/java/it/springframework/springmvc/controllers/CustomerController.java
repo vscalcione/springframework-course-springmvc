@@ -25,7 +25,7 @@ public class CustomerController {
         return "customers";
     }
 
-    @RequestMapping("/customers/{id}")
+    @RequestMapping("/customer/{id}")
     public String getCustomer(@PathVariable Integer id, Model model){
         model.addAttribute("customer", customerService.getCustomerById(id));
         return "customer";
@@ -46,7 +46,7 @@ public class CustomerController {
     @RequestMapping("customer/edit/{id}")
     public String editCustomer(@PathVariable Integer id, Model model){
         model.addAttribute("customer", customerService.getCustomerById(id));
-        return "customerForm";
+        return "/customerForm";
     }
 
     @RequestMapping("/customer/delete/{id}")
