@@ -3,11 +3,10 @@ package it.springframework.springmvc.services.customer;
 import it.springframework.springmvc.domain.Customer;
 import it.springframework.springmvc.domain.DomainObject;
 import it.springframework.springmvc.services.AbstractMapService;
-import it.springframework.springmvc.services.CRUDService;
-import it.springframework.springmvc.services.product.ProductService;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class CustomerServiceImpl extends AbstractMapService implements CustomerService {

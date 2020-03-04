@@ -74,7 +74,7 @@ public class ProductControllerTest {
 
         mockMvc.perform(get("/product/edit/1"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("product/productform"))
+                .andExpect(view().name("product/productForm"))
                 .andExpect(model().attribute("product", instanceOf(Product.class)));
     }
 
@@ -87,7 +87,7 @@ public class ProductControllerTest {
 
         mockMvc.perform(get("/product/new"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("product/productform"))
+                .andExpect(view().name("product/productForm"))
                 .andExpect(model().attribute("product", instanceOf(Product.class)));
     }
 
