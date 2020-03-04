@@ -6,7 +6,7 @@
 
         <!-- link css files -->
         <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
-        <link href="../static/css/spring-core.css" th:href="@{../static/css/spring-core.css}" rel="stylesheet" media="screen"/>
+        <link href="../../static/css/spring-core.css" th:href="@{../../static/css/spring-core.css}" rel="stylesheet" media="screen"/>
 
         <!-- link script js files -->
         <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js" th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
@@ -15,7 +15,7 @@
         <div class="container">
             <h2>Product Details</h2>
             <div>
-                <form class="form-horizontal" th:object="${product}" th:action="@{/product}" method="post">
+                <form class="form-horizontal" th:object="${product}" th:action="@{/templates/product}" method="post">
                     <input type="hidden" th:field="*{id}" />
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Description: </label>

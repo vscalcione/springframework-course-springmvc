@@ -1,8 +1,6 @@
 package it.springframework.springmvc.domain;
 
-import java.math.BigDecimal;
-
-public class Customer {
+public class Customer  implements DomainObject{
 
     private Integer id;
     private String firstName;
@@ -15,11 +13,13 @@ public class Customer {
     private String state;
     private String zipCode;
 
-    public Integer getId() {
+    @Override
+    public Integer getId(){
         return id;
     }
 
-    public void setId(Integer id) {
+    @Override
+    public void setId(Integer id){
         this.id = id;
     }
 

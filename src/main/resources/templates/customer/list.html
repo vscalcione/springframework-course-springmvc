@@ -6,7 +6,7 @@
 
         <!-- link css files -->
         <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
-        <link href="../static/css/spring-core.css" th:href="@{../static/css/spring-core.css}" rel="stylesheet" media="screen"/>
+        <link href="../../static/css/spring-core.css" th:href="@{../../static/css/spring-core.css}" rel="stylesheet" media="screen"/>
 
         <!-- link script js files -->
         <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js" th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
@@ -45,7 +45,7 @@
                             <td th:text="${customer.state}" />
                             <td th:text="${customer.zipCode}" />
                             <td>
-                                <a th:href="${'/customer/' + customer.id}"><i class="fas fa-list-alt fa-2x"></i></a>
+                                <a th:href="${'/customer/show/' + customer.id}"><i class="fas fa-list-alt fa-2x"></i></a>
                             </td>
                             <td>
                                 <a th:href="${'/customer/edit/' + customer.id}"><i class="fas fa-edit fa-2x"></i></a>
