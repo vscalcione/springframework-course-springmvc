@@ -1,6 +1,8 @@
 package it.springframework.springmvc.bootstrap;
 
+import it.springframework.springmvc.domain.Customer;
 import it.springframework.springmvc.domain.Product;
+import it.springframework.springmvc.services.customer.CustomerService;
 import it.springframework.springmvc.services.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -13,15 +15,22 @@ import java.math.BigDecimal;
 public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private ProductService productService;
+    private CustomerService customerService;
 
     @Autowired
     public void setProductService(ProductService productService) {
         this.productService = productService;
     }
 
+    @Autowired
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         loadProducts();
+        loadCustomers();
     }
 
     public void loadProducts(){
@@ -60,5 +69,73 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         product5.setPrice(new BigDecimal("25.99"));
         product5.setImageUrl("http://example.com/product5");
         productService.saveOrUpdate(product5);
+    }
+
+    public void loadCustomers(){
+
+        //First customer
+        Customer customer1 = new Customer();
+        customer1.setFirstName("firstName1");
+        customer1.setLastName("lastName1");
+        customer1.setEmail("email1");
+        customer1.setPhoneNumber("phoneNumber1");
+        customer1.setAddressLine1("firstAddressLine1");
+        customer1.setAddressLine2("secondAddressLine1");
+        customer1.setCity("city");
+        customer1.setState("state1");
+        customer1.setZipCode("zipCode1");
+        customerService.saveOrUpdate(customer1);
+
+        //Second customer
+        Customer customer2 = new Customer();
+        customer2.setFirstName("firstName2");
+        customer2.setLastName("lastName2");
+        customer2.setEmail("email2");
+        customer2.setPhoneNumber("phoneNumber2");
+        customer2.setAddressLine1("firstAddressLine2");
+        customer2.setAddressLine2("secondAddressLine2");
+        customer2.setCity("city2");
+        customer2.setState("state2");
+        customer2.setZipCode("zipCode2");
+        customerService.saveOrUpdate(customer2);
+
+        //Third customer
+        Customer customer3 = new Customer();
+        customer3.setFirstName("firstName3");
+        customer3.setLastName("lastName3");
+        customer3.setEmail("email3");
+        customer3.setPhoneNumber("phoneNumber3");
+        customer3.setAddressLine1("firstAddressLine3");
+        customer3.setAddressLine2("secondAddressLine3");
+        customer3.setCity("city3");
+        customer3.setState("state3");
+        customer3.setZipCode("zipCode3");
+        customerService.saveOrUpdate(customer3);
+
+        //Fourth customer
+        Customer customer4 = new Customer();
+        customer4.setFirstName("firstName4");
+        customer4.setLastName("lastName4");
+        customer4.setEmail("email4");
+        customer4.setPhoneNumber("phoneNumber4");
+        customer4.setAddressLine1("firstAddressLine4");
+        customer4.setAddressLine2("secondAddressLine4");
+        customer4.setCity("city4");
+        customer4.setState("state4");
+        customer4.setZipCode("zipCode4");
+        customerService.saveOrUpdate(customer4);
+
+        //Fifth customer
+        Customer customer5 = new Customer();
+        customer5.setFirstName("firstName5");
+        customer5.setLastName("lastName5");
+        customer5.setEmail("email5");
+        customer5.setPhoneNumber("phoneNumber5");
+        customer5.setAddressLine1("firstAddressLine5");
+        customer5.setAddressLine2("secondAddressLine5");
+        customer5.setCity("city5");
+        customer5.setState("state5");
+        customer5.setZipCode("zipCode5");
+        customerService.saveOrUpdate(customer5);
     }
 }

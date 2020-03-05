@@ -1,7 +1,6 @@
-package it.springframework.springmvc.services.product.dao;
+package it.springframework.springmvc.services.product;
 
 import it.springframework.springmvc.domain.Product;
-import it.springframework.springmvc.services.product.ProductService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
