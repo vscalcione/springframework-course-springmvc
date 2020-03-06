@@ -1,6 +1,7 @@
 package it.springframework.springmvc.services;
 
 import it.springframework.springmvc.configurations.JpaIntegrationConfiguration;
+import it.springframework.springmvc.entities.Customer;
 import it.springframework.springmvc.entities.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,5 +32,24 @@ public class UserServiceJpaDaoImplTest {
         assert savedUser.getEncryptedPassword() != null;
         System.out.println("Encrypted Password");
         System.out.println(savedUser.getEncryptedPassword());
+    }
+
+    @Test
+    public void testSaveUserWithCustomer() throws Exception{
+        User user = new User();
+        user.setUsername("someusername");
+        user.setPassword("mypassword");
+
+        Customer customer = new Customer();
+        customer.setFirstName("Chevy");
+        customer.setLastName("Chase");
+        user.setCustomer(customer);
+
+        User savedUser = userService.saveOrUpdate(user);
+
+        assert savedUser.getId() != null;
+        assert savedUser.getVersion() != null;
+        assert savedUser.getCustomer() != null;
+        assert savedUser.getCustomer().getId() != null;
     }
 }
