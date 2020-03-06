@@ -1,8 +1,7 @@
 package it.springframework.springmvc.services;
 
 import it.springframework.springmvc.configurations.JpaIntegrationConfiguration;
-import it.springframework.springmvc.domain.Customer;
-import it.springframework.springmvc.services.customer.CustomerService;
+import it.springframework.springmvc.entities.Customer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

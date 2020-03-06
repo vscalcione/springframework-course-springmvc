@@ -1,7 +1,7 @@
 package it.springframework.springmvc.controllers;
 
-import it.springframework.springmvc.domain.Product;
-import it.springframework.springmvc.services.product.ProductService;
+import it.springframework.springmvc.entities.Product;
+import it.springframework.springmvc.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

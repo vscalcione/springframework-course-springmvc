@@ -1,8 +1,8 @@
 package it.springframework.springmvc.controllers;
 
 
-import it.springframework.springmvc.domain.Product;
-import it.springframework.springmvc.services.product.ProductService;
+import it.springframework.springmvc.entities.Product;
+import it.springframework.springmvc.services.ProductService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;

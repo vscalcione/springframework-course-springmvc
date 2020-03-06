@@ -1,7 +1,7 @@
 package it.springframework.springmvc.controllers;
 
-import it.springframework.springmvc.domain.Customer;
-import it.springframework.springmvc.services.customer.CustomerService;
+import it.springframework.springmvc.entities.Customer;
+import it.springframework.springmvc.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

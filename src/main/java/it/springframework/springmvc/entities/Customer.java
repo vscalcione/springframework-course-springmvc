@@ -1,4 +1,4 @@
-package it.springframework.springmvc.domain;
+package it.springframework.springmvc.entities;
 
 import javax.persistence.*;
 
@@ -20,6 +20,17 @@ public class Customer  implements DomainObject{
     private String city;
     private String state;
     private String zipCode;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @Override
     public Integer getId(){

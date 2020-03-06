@@ -1,4 +1,4 @@
-package it.springframework.springmvc.domain;
+package it.springframework.springmvc.entities;
 
 public interface DomainObject {
     Integer getId();

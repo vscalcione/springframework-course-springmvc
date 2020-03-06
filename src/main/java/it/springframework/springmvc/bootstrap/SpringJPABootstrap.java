@@ -1,9 +1,9 @@
 package it.springframework.springmvc.bootstrap;
 
-import it.springframework.springmvc.domain.Customer;
-import it.springframework.springmvc.domain.Product;
-import it.springframework.springmvc.services.customer.CustomerService;
-import it.springframework.springmvc.services.product.ProductService;
+import it.springframework.springmvc.entities.Customer;
+import it.springframework.springmvc.entities.Product;
+import it.springframework.springmvc.services.CustomerService;
+import it.springframework.springmvc.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
