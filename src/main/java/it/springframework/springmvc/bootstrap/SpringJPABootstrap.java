@@ -1,5 +1,6 @@
 package it.springframework.springmvc.bootstrap;
 
+import it.springframework.springmvc.entities.Address;
 import it.springframework.springmvc.entities.Customer;
 import it.springframework.springmvc.entities.Product;
 import it.springframework.springmvc.services.CustomerService;
@@ -79,11 +80,12 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer1.setLastName("lastName1");
         customer1.setEmail("email1");
         customer1.setPhoneNumber("phoneNumber1");
-        customer1.setAddressLine1("firstAddressLine1");
-        customer1.setAddressLine2("secondAddressLine1");
-        customer1.setCity("city");
-        customer1.setState("state1");
-        customer1.setZipCode("zipCode1");
+        customer1.setBillingAddress(new Address());
+        customer1.getBillingAddress().setAddressLine1("firstAddressLine1");
+        customer1.getBillingAddress().setAddressLine2("secondAddressLine1");
+        customer1.getBillingAddress().setCity("city1");
+        customer1.getBillingAddress().setState("state1");
+        customer1.getBillingAddress().setZipCode("zipCode1");
         customerService.saveOrUpdate(customer1);
 
         //Second customer
@@ -92,24 +94,25 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer2.setLastName("lastName2");
         customer2.setEmail("email2");
         customer2.setPhoneNumber("phoneNumber2");
-        customer2.setAddressLine1("firstAddressLine2");
-        customer2.setAddressLine2("secondAddressLine2");
-        customer2.setCity("city2");
-        customer2.setState("state2");
-        customer2.setZipCode("zipCode2");
+        customer2.setBillingAddress(new Address());
+        customer2.getBillingAddress().setAddressLine1("firstAddressLine2");
+        customer2.getBillingAddress().setAddressLine2("secondAddressLine2");
+        customer2.getBillingAddress().setCity("city2");
+        customer2.getBillingAddress().setState("state2");
+        customer2.getBillingAddress().setZipCode("zipCode2");
         customerService.saveOrUpdate(customer2);
 
-        //Third customer
         Customer customer3 = new Customer();
         customer3.setFirstName("firstName3");
         customer3.setLastName("lastName3");
         customer3.setEmail("email3");
         customer3.setPhoneNumber("phoneNumber3");
-        customer3.setAddressLine1("firstAddressLine3");
-        customer3.setAddressLine2("secondAddressLine3");
-        customer3.setCity("city3");
-        customer3.setState("state3");
-        customer3.setZipCode("zipCode3");
+        customer3.setBillingAddress(new Address());
+        customer3.getBillingAddress().setAddressLine1("firstAddressLine3");
+        customer3.getBillingAddress().setAddressLine2("secondAddressLine3");
+        customer3.getBillingAddress().setCity("city3");
+        customer3.getBillingAddress().setState("state3");
+        customer3.getBillingAddress().setZipCode("zipCode3");
         customerService.saveOrUpdate(customer3);
 
         //Fourth customer
@@ -118,11 +121,12 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer4.setLastName("lastName4");
         customer4.setEmail("email4");
         customer4.setPhoneNumber("phoneNumber4");
-        customer4.setAddressLine1("firstAddressLine4");
-        customer4.setAddressLine2("secondAddressLine4");
-        customer4.setCity("city4");
-        customer4.setState("state4");
-        customer4.setZipCode("zipCode4");
+        customer4.setBillingAddress(new Address());
+        customer4.getBillingAddress().setAddressLine1("firstAddressLine4");
+        customer4.getBillingAddress().setAddressLine2("secondAddressLine4");
+        customer4.getBillingAddress().setCity("city4");
+        customer4.getBillingAddress().setState("state4");
+        customer4.getBillingAddress().setZipCode("zipCode4");
         customerService.saveOrUpdate(customer4);
 
         //Fifth customer
@@ -131,11 +135,12 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer5.setLastName("lastName5");
         customer5.setEmail("email5");
         customer5.setPhoneNumber("phoneNumber5");
-        customer5.setAddressLine1("firstAddressLine5");
-        customer5.setAddressLine2("secondAddressLine5");
-        customer5.setCity("city5");
-        customer5.setState("state5");
-        customer5.setZipCode("zipCode5");
+        customer5.setBillingAddress(new Address());
+        customer5.getBillingAddress().setAddressLine1("firstAddressLine5");
+        customer5.getBillingAddress().setAddressLine2("secondAddressLine5");
+        customer5.getBillingAddress().setCity("city5");
+        customer5.getBillingAddress().setState("state5");
+        customer5.getBillingAddress().setZipCode("zipCode5");
         customerService.saveOrUpdate(customer5);
     }
 }
