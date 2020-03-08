@@ -16,13 +16,27 @@ public class Customer  implements DomainObject{
     private String email;
     private String phoneNumber;
 
+    @AttributeOverrides({
+            @AttributeOverride(name="addressLine1", column=@javax.persistence.Column(name="billing_addressLine1")),
+            @AttributeOverride(name="addressLine2", column=@javax.persistence.Column(name="billing_addressLine2")),
+            @AttributeOverride(name="city", column=@javax.persistence.Column(name="billing_city")),
+            @AttributeOverride(name="state", column=@javax.persistence.Column(name="billing_state")),
+            @AttributeOverride(name="zipCode", column=@javax.persistence.Column(name="billing_zipCode"))
+    })
     @Embedded
     private Address billingAddress;
 
+    @AttributeOverrides({
+            @AttributeOverride(name="addressLine1", column=@javax.persistence.Column(name="shipping_addressLine1")),
+            @AttributeOverride(name="addressLine2", column=@javax.persistence.Column(name="shipping_addressLine2")),
+            @AttributeOverride(name="city", column=@javax.persistence.Column(name="shipping_city")),
+            @AttributeOverride(name="state", column=@javax.persistence.Column(name="shipping_state")),
+            @AttributeOverride(name="zipCode", column=@javax.persistence.Column(name="shipping_zipCode"))
+    })
     @Embedded
     private Address shippingAddress;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private User user;
 
     public User getUser() {

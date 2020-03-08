@@ -35,7 +35,7 @@
                             <td th:text="${product.price}" />
                             <td th:text="${product.imageUrl}" />
                             <td>
-                                <a th:href="${'/product/show' + product.id}"><i class="fas fa-list-alt fa-2x"></i></a>
+                                <a th:href="${'/product/show/' + product.id}"><i class="fas fa-list-alt fa-2x"></i></a>
                             </td>
                             <td>
                                 <a th:href="${'/product/edit/' + product.id}"><i class="fas fa-edit fa-2x"></i></a>
