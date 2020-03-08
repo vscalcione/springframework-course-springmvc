@@ -1,8 +1,10 @@
 package it.springframework.springmvc.bootstrap;
 
 import it.springframework.springmvc.entities.*;
+import it.springframework.springmvc.entities.security.Role;
 import it.springframework.springmvc.enums.OrderStatus;
 import it.springframework.springmvc.services.ProductService;
+import it.springframework.springmvc.services.RoleService;
 import it.springframework.springmvc.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -17,6 +19,12 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
 
     private ProductService productService;
     private UserService userService;
+    private RoleService roleService;
+
+    @Autowired
+    public void setRoleService(RoleService roleService) {
+        this.roleService = roleService;
+    }
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -34,6 +42,28 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         loadUsersAndCustomers();
         loadCarts();
         loadOrderHistory();
+        loadRoles();
+        assignUsersToDefaultRole();
+    }
+
+    private void assignUsersToDefaultRole(){
+        List<Role> roles = (List<Role>) roleService.listAll();
+        List<User> users = (List<User>) userService.listAll();
+
+        roles.forEach(role ->{
+            if(role.getRole().equalsIgnoreCase("CUSTOMER")){
+                users.forEach(user ->{
+                    user.addRole(role);
+                    userService.saveOrUpdate(user);
+                });
+            }
+        });
+    }
+
+    private void loadRoles(){
+        Role role = new Role();
+        role.setRole("CUSTOMER");
+        roleService.saveOrUpdate(role);
     }
 
     public void loadProducts(){
