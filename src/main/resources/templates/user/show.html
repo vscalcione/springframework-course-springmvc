@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
         <!-- link css files -->
-        <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
+        <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
         <link href="../../static/css/spring-core.css" th:href="@{../../static/css/spring-core.css}" rel="stylesheet" media="screen"/>
 
         <!-- link script js files -->
@@ -15,69 +15,72 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Show Customer</h2>
+                    <h2>Show User</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-8">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Customer Id:</label>
+                            <label class="col-sm-2 control-label">User Id:</label>
                             <div class="col-sm-10">
-                                <p class="form-control-static" th:text="${customer.id}">Customer Id</p>
+                                <p class="form-control-static" th:text="${user.id}">Customer Id</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">First Name:</label>
                             <div class="col-sm-10">
-                                <p class="form-control-static" th:text="${customer.firstName}">First Name</p>
+                                <p class="form-control-static" th:text="${user.customer.firstName}">First Name</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Last Name:</label>
                             <div class="col-sm-10">
-                                <p class="form-control-static" th:text="${customer.lastName}">Last Name</p>
+                                <p class="form-control-static" th:text="${user.customer.lastName}">Last Name</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Email:</label>
                             <div class="col-sm-10">
-                                <p class="form-control-static" th:text="${customer.email}">Email</p>
+                                <p class="form-control-static" th:text="${user.customer.email}">Email</p>
                             </div>
                         </div>
+                        <h2>Billing Address</h2>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Address Line 1:</label>
                             <div class="col-sm-10">
-                                <p class="form-control-static" th:text="${customer.billingAddress.addressLine1}">Address Line 1</p>
+                                <p class="form-control-static" th:text="${user.customer.billingAddress.addressLine1}">Address Line
+                                    1</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Address Line 2:</label>
                             <div class="col-sm-10">
-                                <p class="form-control-static" th:text="${customer.billingAddress.addressLine2}">Address Line 2</p>
+                                <p class="form-control-static" th:text="${user.customer.billingAddress.addressLine2}">Address Line
+                                    2</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">City:</label>
                             <div class="col-sm-10">
-                                <p class="form-control-static" th:text="${customer.billingAddress.city}">City</p>
+                                <p class="form-control-static" th:text="${user.customer.billingAddress.city}">City</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">State:</label>
                             <div class="col-sm-10">
-                                <p class="form-control-static" th:text="${customer.billingAddress.state}">State</p>
+                                <p class="form-control-static" th:text="${user.customer.billingAddress.state}">State</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Zip Code:</label>
                             <div class="col-sm-10">
-                                <p class="form-control-static" th:text="${customer.billingAddress.zipCode}">ZipCode</p>
+                                <p class="form-control-static" th:text="${user.customer.billingAddress.zipCode}">ZipCode</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">
-                                    <a href="/customer/list">Customer list</a>
+                                <a href="/user/list">User list</a>
                             </label>
                         </div>
                     </form>

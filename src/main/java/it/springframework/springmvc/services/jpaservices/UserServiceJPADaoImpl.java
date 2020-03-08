@@ -17,13 +17,14 @@ public class UserServiceJPADaoImpl extends AbstractJpaDaoService implements User
     private EncryptionService encryptionService;
 
     @Autowired
-    public void setEncryptionService(EncryptionService encryptionService){
+    public void setEncryptionService(EncryptionService encryptionService) {
         this.encryptionService = encryptionService;
     }
 
     @Override
     public List<?> listAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+
         return entityManager.createQuery("from User", User.class).getResultList();
     }
 
@@ -40,16 +41,16 @@ public class UserServiceJPADaoImpl extends AbstractJpaDaoService implements User
         if(domainObject.getPassword() != null){
             domainObject.setEncryptedPassword(encryptionService.encryptString(domainObject.getPassword()));
         }
-        User saveduser = entityManager.merge(domainObject);
+        User savedUser = entityManager.merge(domainObject);
         entityManager.getTransaction().commit();
-        return saveduser;
+        return savedUser;
     }
 
     @Override
     public void delete(Integer id) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        entityManager.remove(entityManager.find(User.class, id));
-        entityManager.getTransaction().commit();
+        EntityManager entity = entityManagerFactory.createEntityManager();
+        entity.getTransaction().begin();
+        entity.remove(entity.find(User.class, id));
+        entity.getTransaction().commit();
     }
 }

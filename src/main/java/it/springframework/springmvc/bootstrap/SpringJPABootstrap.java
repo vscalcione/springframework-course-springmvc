@@ -1,37 +1,39 @@
 package it.springframework.springmvc.bootstrap;
 
-import it.springframework.springmvc.entities.Address;
-import it.springframework.springmvc.entities.Customer;
-import it.springframework.springmvc.entities.Product;
-import it.springframework.springmvc.services.CustomerService;
+import it.springframework.springmvc.entities.*;
+import it.springframework.springmvc.enums.OrderStatus;
 import it.springframework.springmvc.services.ProductService;
+import it.springframework.springmvc.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Component
 public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private ProductService productService;
-    private CustomerService customerService;
+    private UserService userService;
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @Autowired
     public void setProductService(ProductService productService) {
         this.productService = productService;
     }
 
-    @Autowired
-    public void setCustomerService(CustomerService customerService) {
-        this.customerService = customerService;
-    }
-
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         loadProducts();
-        loadCustomers();
+        loadUsersAndCustomers();
+        loadCarts();
+        loadOrderHistory();
     }
 
     public void loadProducts(){
@@ -72,7 +74,11 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         productService.saveOrUpdate(product5);
     }
 
-    public void loadCustomers(){
+    public void loadUsersAndCustomers(){
+
+        User user1 = new User();
+        user1.setUsername("r.drummond");
+        user1.setPassword("password");
 
         //First customer
         Customer customer1 = new Customer();
@@ -92,9 +98,14 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer1.getShippingAddress().setCity("Roma");
         customer1.getShippingAddress().setState("Italy");
         customer1.getShippingAddress().setZipCode("00056");
-        customerService.saveOrUpdate(customer1);
+        user1.setCustomer(customer1);
+        userService.saveOrUpdate(user1);
 
         //Second customer
+        User user2 = new User();
+        user2.setUsername("t.riggs");
+        user2.setPassword("password2");
+
         Customer customer2 = new Customer();
         customer2.setFirstName("Tarun");
         customer2.setLastName("Riggs");
@@ -112,7 +123,13 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer2.getShippingAddress().setCity("London");
         customer2.getShippingAddress().setState("Great Britain");
         customer2.getShippingAddress().setZipCode("WC2N 5DU");
-        customerService.saveOrUpdate(customer2);
+        user2.setCustomer(customer2);
+        userService.saveOrUpdate(user2);
+
+        // Third customer
+        User user3 = new User();
+        user3.setUsername("w.francis");
+        user3.setPassword("password3");
 
         Customer customer3 = new Customer();
         customer3.setFirstName("Waqas");
@@ -131,9 +148,14 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer3.getShippingAddress().setCity("Paris");
         customer3.getShippingAddress().setState("France");
         customer3.getShippingAddress().setZipCode("75000");
-        customerService.saveOrUpdate(customer3);
+        user3.setCustomer(customer3);
+        userService.saveOrUpdate(user3);
 
         //Fourth customer
+        User user4 = new User();
+        user4.setUsername("a.ireland");
+        user4.setPassword("password4");
+
         Customer customer4 = new Customer();
         customer4.setFirstName("Ariella");
         customer4.setLastName("Ireland");
@@ -151,9 +173,14 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer4.getShippingAddress().setCity("Sydney");
         customer4.getShippingAddress().setZipCode("2000");
         customer4.getShippingAddress().setState("Australia");
-        customerService.saveOrUpdate(customer4);
+        user4.setCustomer(customer4);
+        userService.saveOrUpdate(user4);
 
         //Fifth customer
+        User user5 = new User();
+        user5.setUsername("p.blair");
+        user5.setPassword("password5");
+
         Customer customer5 = new Customer();
         customer5.setFirstName("Parker");
         customer5.setLastName("Blair");
@@ -171,6 +198,40 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
         customer5.getShippingAddress().setCity("Berlin");
         customer5.getShippingAddress().setState("Germany");
         customer5.getShippingAddress().setZipCode("10115");
-        customerService.saveOrUpdate(customer5);
+        user5.setCustomer(customer5);
+        userService.saveOrUpdate(user5);
+    }
+
+    public void loadCarts(){
+        List<User> users = (List<User>) userService.listAll();
+        List<Product> products = (List<Product>) productService.listAll();
+
+        users.forEach(user -> {
+            user.setCart(new Cart());
+            CartDetail cartDetail = new CartDetail();
+            cartDetail.setProduct(products.get(0));
+            cartDetail.setQuantity(2);
+            user.getCart().addCartDetail(cartDetail);
+            userService.saveOrUpdate(user);
+        });
+
+    }
+
+    public void loadOrderHistory(){
+        List<User> users = (List<User>) userService.listAll();
+        List<Product> products = (List<Product>) productService.listAll();
+
+        users.forEach(user ->{
+            Order order = new Order();
+            order.setCustomer(user.getCustomer());
+            order.setOrderStatus(OrderStatus.SHIPPED);
+
+            products.forEach(product -> {
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.setProduct(product);
+                orderDetail.setQuantity(1);
+                order.addToOrderDetails(orderDetail);
+            });
+        });
     }
 }

@@ -20,38 +20,40 @@ public class UserServiceJpaDaoImplTest {
     private ProductService productService;
 
     @Autowired
-    public void setProductService(ProductService productService) {
-        this.productService = productService;
-    }
-
-    @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
+    @Autowired
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
+    }
+
     @Test
-    public void testSaveUser() throws Exception{
+    public void testSaveOfUser() throws Exception {
         User user = new User();
         user.setUsername("someusername");
         user.setPassword("myPassword");
         User savedUser = userService.saveOrUpdate(user);
+
         assert savedUser.getId() != null;
         assert savedUser.getEncryptedPassword() != null;
+
         System.out.println("Encrypted Password");
         System.out.println(savedUser.getEncryptedPassword());
     }
 
     @Test
-    public void testSaveUserWithCustomer() throws Exception{
+    public void testSaveOfUserWithCustomer() throws Exception {
         User user = new User();
         user.setUsername("someusername");
-        user.setPassword("mypassword");
+        user.setPassword("myPassword");
 
         Customer customer = new Customer();
         customer.setFirstName("Chevy");
         customer.setLastName("Chase");
-        user.setCustomer(customer);
 
+        user.setCustomer(customer);
         User savedUser = userService.saveOrUpdate(user);
 
         assert savedUser.getId() != null;
@@ -61,11 +63,12 @@ public class UserServiceJpaDaoImplTest {
     }
 
     @Test
-    public void testAddCartToUser() throws Exception{
+    public void testAddCartToUser() throws Exception {
         User user = new User();
-        user.setUsername("someUsername");
+        user.setUsername("someusername");
         user.setPassword("myPassword");
         user.setCart(new Cart());
+
         User savedUser = userService.saveOrUpdate(user);
 
         assert savedUser.getId() != null;
@@ -75,20 +78,21 @@ public class UserServiceJpaDaoImplTest {
     }
 
     @Test
-    public void testAddCartToUserWithCartDetails() throws Exception{
+    public void testAddCartToUserWithCartDetails() throws Exception {
         User user = new User();
-        user.setUsername("someUsername");
+        user.setUsername("someusername");
         user.setPassword("myPassword");
         user.setCart(new Cart());
+
         List<Product> storedProducts = (List<Product>) productService.listAll();
 
-        CartDetail cartItemOne = new CartDetail();
-        cartItemOne.setProduct(storedProducts.get(0));
-        user.getCart().addCartDetail(cartItemOne);
+        CartDetail cartItem1 = new CartDetail();
+        cartItem1.setProduct(storedProducts.get(0));
+        user.getCart().addCartDetail(cartItem1);
 
-        CartDetail cartItemTwo = new CartDetail();
-        cartItemTwo.setProduct(storedProducts.get(1));
-        user.getCart().addCartDetail(cartItemTwo);
+        CartDetail cartItem2 = new CartDetail();
+        cartItem2.setProduct(storedProducts.get(1));
+        user.getCart().addCartDetail(cartItem2);
 
         User savedUser = userService.saveOrUpdate(user);
 
@@ -100,29 +104,30 @@ public class UserServiceJpaDaoImplTest {
     }
 
     @Test
-    public void testAddAndRemoveCartToUserWithCartDetails() throws Exception{
+    public void testAddAndRemoveCartToUserWithCartDetails() throws Exception {
         User user = new User();
-        user.setUsername("someUsername");
+        user.setUsername("someusername");
         user.setPassword("myPassword");
         user.setCart(new Cart());
+
         List<Product> storedProducts = (List<Product>) productService.listAll();
 
-        CartDetail cartItemOne = new CartDetail();
-        cartItemOne.setProduct(storedProducts.get(0));
-        user.getCart().addCartDetail(cartItemOne);
+        CartDetail cartItem1 = new CartDetail();
+        cartItem1.setProduct(storedProducts.get(0));
+        user.getCart().addCartDetail(cartItem1);
 
-        CartDetail cartItemTwo = new CartDetail();
-        cartItemTwo.setProduct(storedProducts.get(1));
-        user.getCart().addCartDetail(cartItemTwo);
+        CartDetail cartItem2 = new CartDetail();
+        cartItem2.setProduct(storedProducts.get(1));
+        user.getCart().addCartDetail(cartItem2);
 
         User savedUser = userService.saveOrUpdate(user);
+
         assert savedUser.getCart().getCartDetails().size() == 2;
 
-        savedUser.getCart().removeCardDetail(savedUser.getCart().getCartDetails().get(0));
+        savedUser.getCart().removeCartDetail(savedUser.getCart().getCartDetails().get(0));
 
         userService.saveOrUpdate(savedUser);
+
         assert savedUser.getCart().getCartDetails().size() == 1;
     }
-
-
 }
